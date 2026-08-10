@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const HERO_IMAGE = "https://hotelesantarosa.com/wp-content/uploads/2025/11/a015b315-1515-4d24-83c9-75083d9c10ec.jpeg";
 
@@ -8,6 +8,8 @@ const MONTHS = [
     heroSubject: "Escape to Hotel E — Your January Wine Country Reset",
     preheader: "New year, new adventures. Downtown Santa Rosa awaits.",
     heroCaption: "Historic Boutique Luxury in the Heart of Santa Rosa",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This January, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🍷", title: "Wine Tasting Season Begins", desc: "January is the ideal time to explore Sonoma's 400+ wineries without the summer crowds. Visit St. Francis or Paradise Ridge for intimate barrel tastings." },
       { icon: "🌲", title: "Armstrong Redwoods", desc: "Hike through ancient redwood groves just 30 minutes away. Winter rains bring the forest to life with lush greenery and peaceful trails." },
@@ -25,6 +27,8 @@ const MONTHS = [
     heroSubject: "Valentine's in Wine Country — Book Hotel E",
     preheader: "Treat your Valentine to an unforgettable Sonoma getaway.",
     heroCaption: "Celebrate Love in Santa Rosa's Most Romantic Hotel",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This February, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🍾", title: "Enology Wine Bar Date Night", desc: "Start your evening at our on-site Enology Lounge with award-winning Sonoma County wines and daily happy hour 5–7pm." },
       { icon: "🌹", title: "Romantic Bodega Bay Drive", desc: "Take a scenic 30-minute drive to the Pacific coast. Cliffside views, fresh seafood, and the salty ocean air are the perfect Valentine's backdrop." },
@@ -42,6 +46,8 @@ const MONTHS = [
     heroSubject: "Spring is Here — Explore Wine Country from Hotel E",
     preheader: "Rolling green hills, blooming mustard fields, and open tasting rooms.",
     heroCaption: "Hotel E: Your Spring Wine Country Basecamp",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This March, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🌸", title: "Mustard Fields & Vineyards", desc: "March brings brilliant yellow mustard blooms between the vine rows of Sonoma's valleys — drive Highway 12 for a scenic wine country experience." },
       { icon: "🎭", title: "The California Theatre", desc: "Catch a show at downtown Santa Rosa's beautifully restored California Theatre, just a short stroll from the hotel." },
@@ -59,6 +65,8 @@ const MONTHS = [
     heroSubject: "April in Sonoma — Festivals Await at Hotel E",
     preheader: "Spring festivals, artisan fairs, and wine country adventures.",
     heroCaption: "Boutique Comfort Steps from Courthouse Square",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This April, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🌊", title: "Bodega Bay Coastal Walk", desc: "30 minutes west of Hotel E, the Sonoma Coast offers dramatic cliffs, tide pools, and whale watching through late spring." },
       { icon: "🍺", title: "Downtown Craft Breweries", desc: "Santa Rosa is home to 3 downtown microbreweries. Explore Russian River Brewing, known worldwide for Pliny the Elder." },
@@ -77,6 +85,8 @@ const MONTHS = [
     heroSubject: "May in Wine Country — Book Hotel E & Explore Sonoma",
     preheader: "The weather is perfect. The wines are flowing. Your room awaits.",
     heroCaption: "Hotel E: The Heart of Sonoma Wine Country",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This May, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🍷", title: "Wine Itinerary Packages", desc: "Book our curated wine packages: choose from A Day in Dry Creek Valley, Taste Highway 12, or Sip & Savor Santa Rosa." },
       { icon: "⚾", title: "Sonoma Stompers Baseball", desc: "The season opens in May! Catch a Sonoma Stompers game — a fun, affordable local baseball experience for all ages." },
@@ -95,6 +105,8 @@ const MONTHS = [
     heroSubject: "June is Event Season — Stay at Hotel E in Santa Rosa",
     preheader: "Country music, pride celebrations, Broadway shows — June has it all.",
     heroCaption: "Steps from Downtown Santa Rosa's Best Summer Events",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This June, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🎤", title: "Luther Burbank Concerts", desc: "Summer concerts at the Luther Burbank Performing Arts Center are a Santa Rosa tradition — check the June lineup for world-class acts." },
       { icon: "🏖️", title: "Sonoma Coast Beaches", desc: "June brings warm, clear days perfect for exploring Doran Beach, Goat Rock, and the wild Sonoma coastline 30 minutes away." },
@@ -113,6 +125,8 @@ const MONTHS = [
     heroSubject: "July 4th & Beyond — Celebrate in Wine Country at Hotel E",
     preheader: "Fireworks, hot air balloons, and summer in Sonoma County.",
     heroCaption: "Hotel E — Celebrating Summer in Downtown Santa Rosa",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This July, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🎆", title: "4th of July in Sonoma", desc: "Multiple fireworks shows across Sonoma County — Santa Rosa, Petaluma, and beyond. Hotel E puts you steps from Courthouse Square celebrations." },
       { icon: "🏄", title: "Russian River Adventures", desc: "Float, kayak, or swim the Russian River. Guerneville is 30 minutes from Hotel E and a beloved summer escape." },
@@ -131,6 +145,8 @@ const MONTHS = [
     heroSubject: "August in Sonoma — Fair Season, Apples & More at Hotel E",
     preheader: "The Sonoma County Fair is here. Book your stay now.",
     heroCaption: "The County's #1 Rated Hotel During Fair Season",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This August, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🎡", title: "Sonoma County Fairgrounds", desc: "The iconic Sonoma County Fair runs August 7–16 with rides, the Hall of Flowers, arts, wine country horse racing, and endless food." },
       { icon: "🍎", title: "Apple Orchards & Farm Stands", desc: "Gravenstein apple season peaks in August. Visit local farm stands in Sebastopol for fresh-picked fruit, pies, and cider just 20 minutes away." },
@@ -148,6 +164,8 @@ const MONTHS = [
     heroSubject: "Harvest Season is Here — Experience Sonoma from Hotel E",
     preheader: "The grapes are in. The wines are flowing. The harvest awaits.",
     heroCaption: "Boutique Luxury During Sonoma's Most Beautiful Season",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This September, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🍇", title: "Harvest at the Wineries", desc: "September is crush season — many Sonoma wineries offer harvest experiences and barrel tastings as the grapes come in from the vine." },
       { icon: "🚶", title: "Annadel State Park", desc: "Hike through golden oak woodlands at Annadel, Santa Rosa's own state park with 40+ miles of trails at their most beautiful in harvest light." },
@@ -165,6 +183,8 @@ const MONTHS = [
     heroSubject: "October in Wine Country — Fall Magic at Hotel E",
     preheader: "Harvest fairs, spooky fun, and the most beautiful season in Sonoma.",
     heroCaption: "Fall at Hotel E — Santa Rosa's Historic Beaux-Arts Gem",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This October, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🎃", title: "Halloween on Courthouse Square", desc: "Downtown Santa Rosa celebrates Halloween with community events, costume contests, and a festive atmosphere right outside Hotel E's door." },
       { icon: "🍂", title: "Fall Foliage Drives", desc: "October brings stunning fall color to Sonoma's valleys — drive Highway 128 through Alexander Valley for a leafy, golden canopy over the road." },
@@ -182,6 +202,8 @@ const MONTHS = [
     heroSubject: "Thanksgiving Wine Country — Escape to Hotel E",
     preheader: "A quieter, more intimate Sonoma. Perfect for the holidays.",
     heroCaption: "Hotel E Welcomes You This Holiday Season",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This November, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🦃", title: "Thanksgiving in Wine Country", desc: "Many Sonoma County wineries offer special Thanksgiving weekend tastings — a beloved tradition where tasting rooms open with seasonal offerings." },
       { icon: "🌊", title: "Storm Season Coast", desc: "November waves and wild skies make Bodega Bay dramatic and beautiful. Wrap up and walk the headlands for spectacular Pacific views." },
@@ -199,6 +221,8 @@ const MONTHS = [
     heroSubject: "Holiday Season at Hotel E — A Wine Country Christmas",
     preheader: "Festive lights, holiday markets, and boutique luxury await.",
     heroCaption: "Celebrate the Season at Hotel E on Courthouse Square",
+    introCopy: "Welcome to Hotel E — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This December, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.",
+    ctaTagline: "Book direct for our best rates. Stash Rewards members save even more.",
     thingsToDo: [
       { icon: "🎄", title: "Holiday Lights Downtown", desc: "Courthouse Square transforms into a festive wonderland in December — enjoy the holiday lights, decorations, and seasonal energy right outside our doors." },
       { icon: "🎸", title: "Holiday Performances", desc: "The Luther Burbank Center and The California Theatre both present packed holiday entertainment calendars through the end of December." },
@@ -215,217 +239,220 @@ const MONTHS = [
 
 const SEASON_ICONS = { Winter: "❄️", Spring: "🌸", Summer: "☀️", Fall: "🍂" };
 
-// ─── HTML GENERATOR ────────────────────────────────────────────────────────────
-function generateEmailHTML(month) {
-  const { accentColor: ac, accentLight: al } = month;
-  const eventRows = month.events.map((ev, i) => {
-    const icons = ["🗓️", "🎉", "🎵", "🌟"];
-    return `
-      <tr>
-        <td style="padding:0 0 12px 0;">
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FAFAF8;border:1px solid #E8E0D6;border-radius:6px;">
-            <tr>
-              <td width="52" valign="top" style="padding:16px 0 16px 16px;">
-                <div style="width:36px;height:36px;background:${ac};border-radius:50%;text-align:center;line-height:36px;font-size:16px;">${icons[i % 4]}</div>
-              </td>
-              <td style="padding:16px;">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <td style="font-family:Georgia,serif;font-size:15px;font-weight:600;color:#1A1A1A;padding-bottom:4px;">${ev.name}</td>
-                    <td align="right" style="white-space:nowrap;">
-                      <span style="font-family:Arial,sans-serif;font-size:11px;color:${ac};background:${al};padding:2px 10px;border-radius:12px;font-weight:600;">${ev.date}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="font-family:Arial,sans-serif;font-size:13px;color:#666;line-height:1.6;">${ev.detail}</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>`;
-  }).join("");
+// ─── EDITABLE FIELD ────────────────────────────────────────────────────────────
+// Shows text normally; click to edit inline. Tooltip hints on hover.
+function EditableField({ value, onChange, multiline, style, className }) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(value);
 
-  const todoRows = month.thingsToDo.map(item => `
-      <tr>
-        <td style="padding:0 0 12px 0;">
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${al};border-left:3px solid ${ac};border-radius:6px;">
-            <tr>
-              <td width="52" valign="top" style="padding:16px 0 16px 16px;font-size:24px;">${item.icon}</td>
-              <td style="padding:16px;">
-                <div style="font-family:Georgia,serif;font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:4px;">${item.title}</div>
-                <div style="font-family:Arial,sans-serif;font-size:14px;color:#666;line-height:1.6;">${item.desc}</div>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>`).join("");
+  const commit = () => { onChange(draft); setEditing(false); };
+  const cancel = () => { setDraft(value); setEditing(false); };
+
+  const hoverBorder = "1px dashed #9B8A6E";
+  const editBorder  = "2px solid #9B8A6E";
+
+  if (editing) {
+    return multiline ? (
+      <textarea
+        autoFocus
+        value={draft}
+        rows={Math.max(3, Math.ceil(draft.length / 60))}
+        onChange={e => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={e => { if (e.key === "Escape") cancel(); }}
+        style={{
+          ...style,
+          width: "100%", boxSizing: "border-box",
+          border: editBorder, borderRadius: "4px",
+          padding: "6px 8px", resize: "vertical",
+          fontFamily: "inherit", fontSize: "inherit",
+          lineHeight: "inherit", background: "#FFFDF8",
+          outline: "none", color: "inherit",
+        }}
+      />
+    ) : (
+      <input
+        autoFocus
+        type="text"
+        value={draft}
+        onChange={e => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={e => { if (e.key === "Enter") commit(); if (e.key === "Escape") cancel(); }}
+        style={{
+          ...style,
+          width: "100%", boxSizing: "border-box",
+          border: editBorder, borderRadius: "4px",
+          padding: "4px 8px",
+          fontFamily: "inherit", fontSize: "inherit",
+          background: "#FFFDF8", outline: "none", color: "inherit",
+        }}
+      />
+    );
+  }
+
+  return (
+    <span
+      title="✏️ Click to edit"
+      onClick={() => { setDraft(value); setEditing(true); }}
+      style={{
+        ...style,
+        cursor: "text",
+        display: "block",
+        borderRadius: "3px",
+        padding: "2px 4px",
+        margin: "-2px -4px",
+        border: "1px dashed transparent",
+        transition: "border-color 0.15s, background 0.15s",
+      }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = "#9B8A6E"; e.currentTarget.style.background = "#FDFAF5"; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = "transparent"; e.currentTarget.style.background = "transparent"; }}
+    >
+      {value}
+    </span>
+  );
+}
+
+// ─── HTML GENERATOR ────────────────────────────────────────────────────────────
+function generateEmailHTML(month, edits) {
+  const ac = month.accentColor;
+  const al = month.accentLight;
+  const g = (key, fallback) => (edits[key] !== undefined ? edits[key] : fallback);
+  const gt = (section, i, key) => {
+    const k = `${section}_${i}_${key}`;
+    return edits[k] !== undefined ? edits[k] : month[section][i][key];
+  };
+
+  const todoRows = month.thingsToDo.map((item, i) => `
+    <tr><td style="padding:0 0 12px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${al};border-left:3px solid ${ac};border-radius:6px;">
+        <tr>
+          <td width="52" valign="top" style="padding:16px 0 16px 16px;font-size:22px;">${item.icon}</td>
+          <td style="padding:16px;">
+            <div style="font-family:Georgia,serif;font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:4px;">${gt("thingsToDo", i, "title")}</div>
+            <div style="font-family:Arial,sans-serif;font-size:13px;color:#666;line-height:1.6;">${gt("thingsToDo", i, "desc")}</div>
+          </td>
+        </tr>
+      </table>
+    </td></tr>`).join("");
+
+  const icons = ["🗓️","🎉","🎵","🌟"];
+  const eventRows = month.events.map((ev, i) => `
+    <tr><td style="padding:0 0 12px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FAFAF8;border:1px solid #E8E0D6;border-radius:6px;">
+        <tr>
+          <td width="52" valign="top" style="padding:16px 0 16px 16px;">
+            <div style="width:36px;height:36px;background:${ac};border-radius:50%;text-align:center;line-height:36px;font-size:16px;">${icons[i % 4]}</div>
+          </td>
+          <td style="padding:16px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-family:Georgia,serif;font-size:15px;font-weight:600;color:#1A1A1A;padding-bottom:4px;">${gt("events", i, "name")}</td>
+                <td align="right"><span style="font-family:Arial,sans-serif;font-size:11px;color:${ac};background:${al};padding:2px 10px;border-radius:12px;font-weight:600;">${gt("events", i, "date")}</span></td>
+              </tr>
+              <tr><td colspan="2" style="font-family:Arial,sans-serif;font-size:13px;color:#666;line-height:1.6;">${gt("events", i, "detail")}</td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td></tr>`).join("");
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>${month.heroSubject}</title>
-  <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>${g("heroSubject", month.heroSubject)}</title>
 </head>
-<body style="margin:0;padding:0;background:#F9F7F4;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-
-<!-- Preheader (hidden) -->
-<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${month.preheader}</div>
-
-<!-- Wrapper -->
+<body style="margin:0;padding:0;background:#F9F7F4;">
+<div style="display:none;max-height:0;overflow:hidden;">${g("preheader", month.preheader)}</div>
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F9F7F4;">
-  <tr>
-    <td align="center" style="padding:24px 16px;">
+<tr><td align="center" style="padding:24px 16px;">
+<table width="620" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;background:#fff;border:1px solid #E8E0D6;border-radius:8px;overflow:hidden;">
 
-      <!-- Email Container -->
-      <table width="620" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;background:#ffffff;border:1px solid #E8E0D6;border-radius:8px;overflow:hidden;">
+  <tr><td style="background:#1A1A1A;padding:12px 24px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9B8A6E;">Hotel E Santa Rosa</td>
+      <td align="right" style="font-family:Arial,sans-serif;font-size:11px;color:#666;">reservations@hotelesantarosa.com</td>
+    </tr></table>
+  </td></tr>
 
-        <!-- Top Bar -->
-        <tr>
-          <td style="background:#1A1A1A;padding:12px 24px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9B8A6E;">Hotel E Santa Rosa</td>
-                <td align="right" style="font-family:Arial,sans-serif;font-size:11px;color:#666;">reservations@hotelesantarosa.com</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
+  <tr><td style="padding:0;">
+    <img src="${HERO_IMAGE}" alt="Hotel E Santa Rosa" width="620" style="display:block;width:100%;max-width:620px;height:300px;object-fit:cover;"/>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${ac};">
+      <tr><td style="padding:20px 32px 24px;">
+        <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:8px;">${SEASON_ICONS[month.season]} ${month.season} &middot; ${month.name} 2026</div>
+        <div style="font-family:Georgia,serif;font-size:28px;color:#fff;line-height:1.25;margin-bottom:6px;">${g("tagline", month.tagline)}</div>
+        <div style="font-family:Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);font-style:italic;">${g("heroCaption", month.heroCaption)}</div>
+      </td></tr>
+    </table>
+  </td></tr>
 
-        <!-- Hero Image -->
-        <tr>
-          <td style="padding:0;position:relative;">
-            <img src="${HERO_IMAGE}" alt="Hotel E Santa Rosa" width="620" style="display:block;width:100%;max-width:620px;height:300px;object-fit:cover;" />
-            <!-- Overlay text (Outlook fallback: plain text below image) -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${ac};">
-              <tr>
-                <td style="padding:20px 32px 24px;">
-                  <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:8px;">${SEASON_ICONS[month.season]} ${month.season} &middot; ${month.name} 2026</div>
-                  <div style="font-family:Georgia,serif;font-size:28px;font-weight:400;color:#ffffff;line-height:1.25;margin-bottom:6px;">${month.tagline}</div>
-                  <div style="font-family:Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);font-style:italic;">${month.heroCaption}</div>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
+  <tr><td style="padding:36px 32px 8px;text-align:center;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:${ac};margin-bottom:12px;">37 Old Courthouse Square &middot; Downtown Santa Rosa</div>
+    <p style="font-family:Georgia,serif;font-size:15px;color:#555;line-height:1.7;margin:0 0 24px;">${g("introCopy", month.introCopy)}</p>
+    <a href="https://hotelesantarosa.com/rooms/" style="display:inline-block;background:${ac};color:#fff;padding:13px 32px;border-radius:2px;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">${g("cta", month.cta)}</a>
+  </td></tr>
 
-        <!-- Intro -->
-        <tr>
-          <td style="padding:36px 32px 8px;text-align:center;">
-            <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:${ac};margin-bottom:12px;">37 Old Courthouse Square &middot; Downtown Santa Rosa</div>
-            <p style="font-family:Georgia,serif;font-size:15px;color:#555;line-height:1.7;margin:0 0 24px;">
-              Welcome to <strong>Hotel E</strong> &mdash; Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This ${month.name}, Sonoma Wine Country is yours to explore. Our concierge team is ready to help you make the most of it.
-            </p>
-            <a href="https://hotelesantarosa.com/rooms/" style="display:inline-block;background:${ac};color:#ffffff;padding:13px 32px;border-radius:2px;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">${month.cta}</a>
-          </td>
-        </tr>
+  <tr><td style="padding:28px 32px 0;"><hr style="border:none;border-top:1px solid #E8E0D6;margin:0;"/></td></tr>
 
-        <!-- Divider -->
-        <tr><td style="padding:28px 32px 0;"><hr style="border:none;border-top:1px solid #E8E0D6;margin:0;" /></td></tr>
+  <tr><td style="padding:32px 32px 8px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td align="center" style="padding-bottom:24px;">
+        <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#9B8A6E;margin-bottom:8px;">Things To Do</div>
+        <div style="font-family:Georgia,serif;font-size:24px;color:#1A1A1A;">Explore Sonoma in ${month.name}</div>
+      </td></tr>
+      ${todoRows}
+    </table>
+  </td></tr>
 
-        <!-- Things To Do -->
-        <tr>
-          <td style="padding:32px 32px 8px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td align="center" style="padding-bottom:24px;">
-                  <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#9B8A6E;margin-bottom:8px;">Things To Do</div>
-                  <div style="font-family:Georgia,serif;font-size:24px;font-weight:400;color:#1A1A1A;">Explore Sonoma in ${month.name}</div>
-                </td>
-              </tr>
-              ${todoRows}
-            </table>
-          </td>
-        </tr>
+  <tr><td style="padding:16px 32px 0;"><hr style="border:none;border-top:1px solid #E8E0D6;margin:0;"/></td></tr>
 
-        <!-- Divider -->
-        <tr><td style="padding:16px 32px 0;"><hr style="border:none;border-top:1px solid #E8E0D6;margin:0;" /></td></tr>
+  <tr><td style="padding:32px 32px 8px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td align="center" style="padding-bottom:24px;">
+        <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#9B8A6E;margin-bottom:8px;">Area Events</div>
+        <div style="font-family:Georgia,serif;font-size:24px;color:#1A1A1A;">Don't Miss in ${month.name}</div>
+      </td></tr>
+      ${eventRows}
+    </table>
+  </td></tr>
 
-        <!-- Events -->
-        <tr>
-          <td style="padding:32px 32px 8px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td align="center" style="padding-bottom:24px;">
-                  <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#9B8A6E;margin-bottom:8px;">Area Events</div>
-                  <div style="font-family:Georgia,serif;font-size:24px;font-weight:400;color:#1A1A1A;">Don't Miss in ${month.name}</div>
-                </td>
-              </tr>
-              ${eventRows}
-            </table>
-          </td>
-        </tr>
+  <tr><td style="padding:16px 32px 24px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FAFAF8;border:1px solid #E8E0D6;border-radius:6px;">
+      <tr><td align="center" style="padding:20px 12px;">
+        <table cellpadding="0" cellspacing="0" border="0"><tr>
+          ${[{icon:"☕",label:"Free Breakfast",sub:"Daily 6:30–10AM"},{icon:"🍷",label:"Enology Wine Bar",sub:"Happy Hour 5–7PM"},{icon:"🚗",label:"Valet Parking",sub:"$25/night"},{icon:"🐾",label:"Pet Friendly",sub:"Dogs welcome"}]
+            .map(a=>`<td align="center" style="padding:0 16px;font-family:Arial,sans-serif;"><div style="font-size:20px;margin-bottom:4px;">${a.icon}</div><div style="font-size:12px;font-weight:600;color:#1A1A1A;">${a.label}</div><div style="font-size:11px;color:#999;">${a.sub}</div></td>`).join("")}
+        </tr></table>
+      </td></tr>
+    </table>
+  </td></tr>
 
-        <!-- Amenities Strip -->
-        <tr>
-          <td style="padding:16px 32px 24px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FAFAF8;border:1px solid #E8E0D6;border-radius:6px;">
-              <tr>
-                <td align="center" style="padding:20px 12px;font-family:Arial,sans-serif;">
-                  <table cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                      ${[
-                        { icon: "☕", label: "Free Breakfast", sub: "Daily 6:30–10AM" },
-                        { icon: "🍷", label: "Enology Wine Bar", sub: "Happy Hour 5–7PM" },
-                        { icon: "🚗", label: "Valet Parking", sub: "$25/night" },
-                        { icon: "🐾", label: "Pet Friendly", sub: "Dogs welcome" },
-                      ].map(a => `
-                      <td align="center" style="padding:0 16px;">
-                        <div style="font-size:20px;margin-bottom:4px;">${a.icon}</div>
-                        <div style="font-size:12px;font-weight:600;color:#1A1A1A;margin-bottom:2px;">${a.label}</div>
-                        <div style="font-size:11px;color:#999;">${a.sub}</div>
-                      </td>`).join("")}
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
+  <tr><td style="background:${ac};padding:40px 32px;text-align:center;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:12px;">${month.name} 2026</div>
+    <div style="font-family:Georgia,serif;font-size:28px;color:#fff;margin-bottom:12px;">Your Sonoma Adventure Awaits</div>
+    <p style="font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.85);margin:0 0 24px;line-height:1.6;">${g("ctaTagline", month.ctaTagline)}</p>
+    <a href="https://hotelesantarosa.com/rooms/" style="display:inline-block;background:#fff;color:${ac};padding:13px 36px;border-radius:2px;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">${g("cta", month.cta)}</a>
+  </td></tr>
 
-        <!-- Final CTA -->
-        <tr>
-          <td style="background:${ac};padding:40px 32px;text-align:center;">
-            <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:12px;">${month.name} 2026</div>
-            <div style="font-family:Georgia,serif;font-size:28px;font-weight:400;color:#ffffff;margin-bottom:12px;">Your Sonoma Adventure Awaits</div>
-            <p style="font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.85);margin:0 0 24px;line-height:1.6;">Book direct for our best rates. Stash Rewards members save even more.</p>
-            <a href="https://hotelesantarosa.com/rooms/" style="display:inline-block;background:#ffffff;color:${ac};padding:13px 36px;border-radius:2px;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">${month.cta}</a>
-          </td>
-        </tr>
+  <tr><td style="background:#1A1A1A;padding:24px 32px;text-align:center;font-family:Arial,sans-serif;">
+    <div style="color:#9B8A6E;font-size:14px;letter-spacing:1px;margin-bottom:8px;">Hotel E Santa Rosa</div>
+    <div style="color:#666;font-size:12px;line-height:1.8;">37 Old Courthouse Square &middot; Santa Rosa, CA 95404<br/>(707) 481-3750 &middot; reservations@hotelesantarosa.com</div>
+    <div style="margin-top:16px;font-size:11px;color:#555;">
+      You're receiving this because you subscribed to Hotel E news and offers.<br/>
+      <a href="#" style="color:#9B8A6E;">Unsubscribe</a> &middot; <a href="https://hotelesantarosa.com" style="color:#9B8A6E;">Visit Website</a>
+    </div>
+  </td></tr>
 
-        <!-- Footer -->
-        <tr>
-          <td style="background:#1A1A1A;padding:24px 32px;text-align:center;">
-            <div style="font-family:Arial,sans-serif;font-size:14px;letter-spacing:1px;color:#9B8A6E;margin-bottom:8px;">Hotel E Santa Rosa</div>
-            <div style="font-family:Arial,sans-serif;font-size:12px;color:#666;line-height:1.8;">
-              37 Old Courthouse Square &middot; Santa Rosa, CA 95404<br />
-              (707) 481-3750 &middot; reservations@hotelesantarosa.com<br />
-              <span style="color:#555;">Front Desk Open 24/7</span>
-            </div>
-            <div style="margin-top:16px;font-family:Arial,sans-serif;font-size:11px;color:#555;">
-              You're receiving this because you subscribed to Hotel E news and offers.<br />
-              <a href="#" style="color:#9B8A6E;">Unsubscribe</a> &middot; <a href="https://hotelesantarosa.com" style="color:#9B8A6E;">Visit Website</a>
-            </div>
-          </td>
-        </tr>
-
-      </table>
-      <!-- /Email Container -->
-
-    </td>
-  </tr>
+</table>
+</td></tr>
 </table>
 </body>
 </html>`;
 }
 
-// ─── DOWNLOAD HELPER ───────────────────────────────────────────────────────────
-function downloadHTML(month) {
-  const html = generateEmailHTML(month);
+function downloadHTML(month, edits) {
+  const html = generateEmailHTML(month, edits);
   const blob = new Blob([html], { type: "text/html;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -437,117 +464,169 @@ function downloadHTML(month) {
   URL.revokeObjectURL(url);
 }
 
-function downloadAllHTML() {
+function downloadAllHTML(allEdits) {
   MONTHS.forEach((month, i) => {
-    setTimeout(() => downloadHTML(month), i * 200);
+    setTimeout(() => downloadHTML(month, allEdits[i] || {}), i * 200);
   });
 }
 
-// ─── UI ────────────────────────────────────────────────────────────────────────
+// ─── MAIN APP ──────────────────────────────────────────────────────────────────
 export default function HotelEEmailCampaign() {
   const [selectedMonth, setSelectedMonth] = useState(0);
   const [view, setView] = useState("preview");
   const [downloaded, setDownloaded] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  // allEdits[monthIndex][fieldKey] = overridden value
+  const [allEdits, setAllEdits] = useState(() => MONTHS.map(() => ({})));
 
   const month = MONTHS[selectedMonth];
   const accent = month.accentColor;
   const accentLight = month.accentLight;
+  const edits = allEdits[selectedMonth];
+
+  const setEdit = useCallback((key, val) => {
+    setAllEdits(prev => {
+      const next = [...prev];
+      next[selectedMonth] = { ...next[selectedMonth], [key]: val };
+      return next;
+    });
+  }, [selectedMonth]);
+
+  const setNestedEdit = useCallback((section, i, key, val) => {
+    setEdit(`${section}_${i}_${key}`, val);
+  }, [setEdit]);
+
+  // Resolve: edited value or original
+  const g = (key) => edits[key] !== undefined ? edits[key] : month[key];
+  const gt = (section, i, key) => {
+    const k = `${section}_${i}_${key}`;
+    return edits[k] !== undefined ? edits[k] : month[section][i][key];
+  };
+
+  const hasEdits = Object.keys(edits).length > 0;
 
   function handleDownloadCurrent() {
-    downloadHTML(month);
+    downloadHTML(month, edits);
     setDownloaded(month.name);
     setTimeout(() => setDownloaded(null), 2500);
   }
 
   function handleDownloadAll() {
-    downloadAllHTML();
+    downloadAllHTML(allEdits);
     setDownloaded("all");
     setTimeout(() => setDownloaded(null), 3000);
   }
 
+  // Wrap editable vs static text
+  const E = ({ fieldKey, multiline, style }) =>
+    editMode
+      ? <EditableField value={g(fieldKey)} onChange={v => setEdit(fieldKey, v)} multiline={multiline} style={style} />
+      : <span style={style}>{g(fieldKey)}</span>;
+
+  const EN = ({ section, i, fieldKey, multiline, style }) =>
+    editMode
+      ? <EditableField value={gt(section, i, fieldKey)} onChange={v => setNestedEdit(section, i, fieldKey, v)} multiline={multiline} style={style} />
+      : <span style={style}>{gt(section, i, fieldKey)}</span>;
+
   return (
     <div style={{ fontFamily: "'Georgia', serif", background: "#F9F7F4", minHeight: "100vh" }}>
 
-      {/* Header */}
-      <div style={{
-        background: "#1A1A1A", color: "#fff", padding: "14px 24px",
-        display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px"
-      }}>
+      {/* ── Header ── */}
+      <div style={{ background: "#1A1A1A", color: "#fff", padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
         <div>
           <div style={{ fontSize: "11px", letterSpacing: "2px", color: "#9B8A6E", textTransform: "uppercase", marginBottom: "2px" }}>Hotel E Santa Rosa</div>
-          <div style={{ fontSize: "18px", fontWeight: "300", letterSpacing: "1px" }}>2026 Email Campaign</div>
+          <div style={{ fontSize: "17px", fontWeight: "300", letterSpacing: "1px" }}>2026 Email Campaign</div>
         </div>
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          <button onClick={() => setView("list")} style={{ padding: "6px 14px", borderRadius: "4px", border: "1px solid #444", background: view === "list" ? "#9B8A6E" : "transparent", color: "#fff", cursor: "pointer", fontSize: "12px" }}>All Months</button>
-          <button onClick={() => setView("preview")} style={{ padding: "6px 14px", borderRadius: "4px", border: "1px solid #444", background: view === "preview" ? "#9B8A6E" : "transparent", color: "#fff", cursor: "pointer", fontSize: "12px" }}>Preview</button>
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
+          <button onClick={() => setView("list")} style={{ padding: "6px 13px", borderRadius: "4px", border: "1px solid #444", background: view === "list" ? "#9B8A6E" : "transparent", color: "#fff", cursor: "pointer", fontSize: "12px" }}>All Months</button>
+          <button onClick={() => setView("preview")} style={{ padding: "6px 13px", borderRadius: "4px", border: "1px solid #444", background: view === "preview" ? "#9B8A6E" : "transparent", color: "#fff", cursor: "pointer", fontSize: "12px" }}>Preview</button>
           <button
-            onClick={handleDownloadAll}
-            style={{ padding: "6px 14px", borderRadius: "4px", border: "1px solid #9B8A6E", background: downloaded === "all" ? "#9B8A6E" : "transparent", color: downloaded === "all" ? "#fff" : "#9B8A6E", cursor: "pointer", fontSize: "12px", fontFamily: "sans-serif" }}
+            onClick={() => setEditMode(m => !m)}
+            style={{ padding: "6px 13px", borderRadius: "4px", border: `1px solid ${editMode ? "#F0B429" : "#666"}`, background: editMode ? "#F0B429" : "transparent", color: editMode ? "#1A1A1A" : "#F0B429", cursor: "pointer", fontSize: "12px", fontFamily: "sans-serif", fontWeight: editMode ? "700" : "400" }}
           >
-            {downloaded === "all" ? "⬇ Downloading All…" : "⬇ Download All 12"}
+            {editMode ? "✏️ Editing On" : "✏️ Edit Text"}
+          </button>
+          <button onClick={handleDownloadAll} style={{ padding: "6px 13px", borderRadius: "4px", border: "1px solid #9B8A6E", background: downloaded === "all" ? "#9B8A6E" : "transparent", color: downloaded === "all" ? "#fff" : "#9B8A6E", cursor: "pointer", fontSize: "12px", fontFamily: "sans-serif" }}>
+            {downloaded === "all" ? "⬇ Downloading…" : "⬇ All 12"}
           </button>
         </div>
       </div>
 
+      {/* ── Edit mode banner ── */}
+      {editMode && (
+        <div style={{ background: "#FFFBEA", borderBottom: "1px solid #F0B429", padding: "8px 24px", fontFamily: "sans-serif", fontSize: "13px", color: "#7A5700", display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
+          <span>✏️ <strong>Edit mode on</strong> — click any text in the email to edit it. Press Enter or click away to save. Edits apply to your download.</span>
+          {hasEdits && (
+            <button onClick={() => setAllEdits(prev => { const n=[...prev]; n[selectedMonth]={}; return n; })} style={{ padding: "3px 10px", fontSize: "12px", background: "#fff", border: "1px solid #F0B429", borderRadius: "4px", color: "#7A5700", cursor: "pointer" }}>
+              Reset {month.name} edits
+            </button>
+          )}
+        </div>
+      )}
+
       {view === "list" ? (
-        <div style={{ padding: "32px 24px", maxWidth: "1100px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "20px", fontWeight: "400", color: "#333", marginBottom: "24px", letterSpacing: "1px" }}>All 12 Campaigns</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "16px" }}>
+        /* ── All Months Grid ── */
+        <div style={{ padding: "28px 24px", maxWidth: "1100px", margin: "0 auto" }}>
+          <h2 style={{ fontSize: "19px", fontWeight: "400", color: "#333", marginBottom: "20px", letterSpacing: "1px" }}>All 12 Campaigns</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: "14px" }}>
             {MONTHS.map((m, i) => (
-              <div key={m.id} style={{ background: "#fff", border: `2px solid ${selectedMonth === i ? m.accentColor : "#E8E0D6"}`, borderRadius: "8px", padding: "20px", boxShadow: selectedMonth === i ? `0 4px 16px ${m.accentColor}30` : "none" }}>
+              <div key={m.id} style={{ background: "#fff", border: `2px solid ${selectedMonth === i ? m.accentColor : "#E8E0D6"}`, borderRadius: "8px", padding: "18px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                  <span style={{ fontSize: "11px", letterSpacing: "1px", textTransform: "uppercase", color: m.accentColor, fontFamily: "sans-serif" }}>{SEASON_ICONS[m.season]} {m.season}</span>
-                  <span style={{ background: m.accentLight, color: m.accentColor, fontSize: "10px", padding: "2px 8px", borderRadius: "12px", fontFamily: "sans-serif", fontWeight: "600" }}>{m.events.length} Events</span>
+                  <span style={{ fontSize: "11px", color: m.accentColor, fontFamily: "sans-serif", textTransform: "uppercase", letterSpacing: "1px" }}>{m.name}</span>
+                  {Object.keys(allEdits[i]).length > 0 && <span style={{ fontSize: "10px", background: "#FFFBEA", color: "#7A5700", padding: "1px 6px", borderRadius: "8px", fontFamily: "sans-serif" }}>edited</span>}
                 </div>
-                <div style={{ fontSize: "22px", fontWeight: "700", color: "#1A1A1A", marginBottom: "4px" }}>{m.name}</div>
-                <div style={{ fontSize: "12px", color: "#666", fontStyle: "italic", marginBottom: "14px" }}>"{m.tagline}"</div>
+                <div style={{ fontSize: "13px", color: "#666", fontStyle: "italic", marginBottom: "14px" }}>"{m.tagline}"</div>
                 <div style={{ display: "flex", gap: "8px" }}>
                   <button onClick={() => { setSelectedMonth(i); setView("preview"); }} style={{ flex: 1, padding: "7px 0", background: m.accentLight, color: m.accentColor, border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "12px", fontFamily: "sans-serif", fontWeight: "600" }}>Preview</button>
-                  <button onClick={() => downloadHTML(m)} style={{ flex: 1, padding: "7px 0", background: m.accentColor, color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "12px", fontFamily: "sans-serif", fontWeight: "600" }}>⬇ HTML</button>
+                  <button onClick={() => downloadHTML(m, allEdits[i] || {})} style={{ flex: 1, padding: "7px 0", background: m.accentColor, color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "12px", fontFamily: "sans-serif", fontWeight: "600" }}>⬇ HTML</button>
                 </div>
               </div>
             ))}
           </div>
         </div>
       ) : (
+        /* ── Preview + Sidebar ── */
         <div style={{ display: "flex", maxWidth: "1200px", margin: "0 auto" }}>
 
           {/* Sidebar */}
-          <div style={{ width: "155px", flexShrink: 0, background: "#fff", borderRight: "1px solid #E8E0D6", minHeight: "calc(100vh - 62px)" }}>
+          <div style={{ width: "148px", flexShrink: 0, background: "#fff", borderRight: "1px solid #E8E0D6", minHeight: "calc(100vh - 62px)" }}>
             {MONTHS.map((m, i) => (
-              <button key={m.id} onClick={() => setSelectedMonth(i)} style={{ display: "block", width: "100%", padding: "10px 14px", textAlign: "left", background: selectedMonth === i ? m.accentLight : "transparent", border: "none", borderLeft: `3px solid ${selectedMonth === i ? m.accentColor : "transparent"}`, cursor: "pointer", fontSize: "13px", color: selectedMonth === i ? m.accentColor : "#555", fontWeight: selectedMonth === i ? "600" : "400", fontFamily: "sans-serif" }}>
+              <button key={m.id} onClick={() => setSelectedMonth(i)} style={{ display: "block", width: "100%", padding: "9px 12px", textAlign: "left", background: selectedMonth === i ? m.accentLight : "transparent", border: "none", borderLeft: `3px solid ${selectedMonth === i ? m.accentColor : "transparent"}`, cursor: "pointer", fontSize: "13px", color: selectedMonth === i ? m.accentColor : "#555", fontWeight: selectedMonth === i ? "600" : "400", fontFamily: "sans-serif", position: "relative" }}>
                 {m.name}
+                {Object.keys(allEdits[i]).length > 0 && <span style={{ position: "absolute", right: "8px", top: "50%", transform: "translateY(-50%)", width: "6px", height: "6px", borderRadius: "50%", background: "#F0B429" }} />}
               </button>
             ))}
           </div>
 
-          {/* Preview Panel */}
-          <div style={{ flex: 1, padding: "20px 24px", overflowY: "auto" }}>
+          {/* Preview */}
+          <div style={{ flex: 1, padding: "18px 22px", overflowY: "auto" }}>
 
-            {/* Meta + Download Bar */}
-            <div style={{ background: "#fff", border: "1px solid #E8E0D6", borderRadius: "8px", padding: "14px 20px", marginBottom: "18px", display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center", justifyContent: "space-between", fontFamily: "sans-serif" }}>
-              <div style={{ flex: 1, minWidth: "200px" }}>
-                <div style={{ fontSize: "10px", color: "#999", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "2px" }}>Subject</div>
-                <div style={{ fontSize: "13px", color: "#1A1A1A", fontWeight: "500" }}>{month.heroSubject}</div>
-                <div style={{ fontSize: "11px", color: "#888", marginTop: "4px" }}>Preview: {month.preheader}</div>
+            {/* Meta bar */}
+            <div style={{ background: "#fff", border: "1px solid #E8E0D6", borderRadius: "8px", padding: "12px 18px", marginBottom: "16px", display: "flex", flexWrap: "wrap", gap: "14px", alignItems: "center", justifyContent: "space-between", fontFamily: "sans-serif" }}>
+              <div style={{ flex: 1, minWidth: "180px" }}>
+                <div style={{ fontSize: "10px", color: "#999", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "2px" }}>Subject Line</div>
+                {editMode
+                  ? <EditableField value={g("heroSubject")} onChange={v => setEdit("heroSubject", v)} style={{ fontSize: "13px", fontWeight: "500", color: "#1A1A1A" }} />
+                  : <div style={{ fontSize: "13px", fontWeight: "500", color: "#1A1A1A" }}>{g("heroSubject")}</div>
+                }
+                <div style={{ fontSize: "10px", color: "#999", textTransform: "uppercase", letterSpacing: "1px", marginTop: "6px", marginBottom: "2px" }}>Preview Text</div>
+                {editMode
+                  ? <EditableField value={g("preheader")} onChange={v => setEdit("preheader", v)} style={{ fontSize: "12px", color: "#666" }} />
+                  : <div style={{ fontSize: "12px", color: "#666" }}>{g("preheader")}</div>
+                }
               </div>
               <button
                 onClick={handleDownloadCurrent}
-                style={{
-                  padding: "9px 20px", background: downloaded === month.name ? "#3D6B35" : accent,
-                  color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer",
-                  fontSize: "13px", fontFamily: "sans-serif", fontWeight: "600",
-                  transition: "background 0.2s", whiteSpace: "nowrap"
-                }}
+                style={{ padding: "9px 18px", background: downloaded === month.name ? "#3D6B35" : accent, color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "13px", fontFamily: "sans-serif", fontWeight: "600", whiteSpace: "nowrap" }}
               >
-                {downloaded === month.name ? `✓ Downloaded!` : `⬇ Download ${month.name} HTML`}
+                {downloaded === month.name ? "✓ Downloaded!" : `⬇ Download ${month.name} HTML`}
               </button>
             </div>
 
-            {/* Email Render */}
+            {/* ── EMAIL PREVIEW ── */}
             <div style={{ maxWidth: "620px", margin: "0 auto", background: "#fff", border: "1px solid #E8E0D6", borderRadius: "8px", overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
 
-              {/* Top Bar */}
+              {/* Top bar */}
               <div style={{ background: "#1A1A1A", padding: "12px 24px", display: "flex", justifyContent: "space-between" }}>
                 <span style={{ color: "#9B8A6E", fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase" }}>Hotel E Santa Rosa</span>
                 <span style={{ color: "#666", fontSize: "11px" }}>reservations@hotelesantarosa.com</span>
@@ -555,94 +634,116 @@ export default function HotelEEmailCampaign() {
 
               {/* Hero */}
               <div style={{ position: "relative" }}>
-                <img src={HERO_IMAGE} alt="Hotel E" style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }} />
-                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, ${accent}11, ${accent}BB)` }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "24px 32px" }}>
-                  <div style={{ fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", fontFamily: "sans-serif", marginBottom: "6px" }}>{SEASON_ICONS[month.season]} {month.season} · {month.name} 2026</div>
-                  <div style={{ fontSize: "30px", fontWeight: "400", color: "#fff", lineHeight: 1.2, marginBottom: "6px", textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}>{month.tagline}</div>
-                  <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.85)", fontStyle: "italic" }}>{month.heroCaption}</div>
+                <img src={HERO_IMAGE} alt="Hotel E" style={{ width: "100%", height: "260px", objectFit: "cover", display: "block" }} />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, ${accent}11, ${accent}CC)` }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 32px", background: accent }}>
+                  <div style={{ fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontFamily: "sans-serif", marginBottom: "6px" }}>
+                    {SEASON_ICONS[month.season]} {month.season} · {month.name} 2026
+                  </div>
+                  <div style={{ fontSize: "26px", fontWeight: "400", color: "#fff", lineHeight: 1.2, marginBottom: "5px" }}>
+                    <E fieldKey="tagline" style={{ color: "#fff", fontSize: "26px" }} />
+                  </div>
+                  <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.85)", fontStyle: "italic" }}>
+                    <E fieldKey="heroCaption" style={{ fontSize: "13px" }} />
+                  </div>
                 </div>
               </div>
 
               {/* Intro */}
-              <div style={{ padding: "32px 32px 8px", textAlign: "center" }}>
-                <div style={{ fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", color: accent, fontFamily: "sans-serif", marginBottom: "12px" }}>37 Old Courthouse Square · Downtown Santa Rosa</div>
-                <p style={{ color: "#555", lineHeight: 1.7, fontSize: "15px", margin: "0 0 20px" }}>
-                  Welcome to <strong>Hotel E</strong> — Santa Rosa's #1 rated boutique hotel, housed in a beautifully restored 1906 Beaux-Arts landmark. This {month.name}, Sonoma Wine Country is yours to explore.
-                </p>
-                <a href="https://hotelesantarosa.com/rooms/" style={{ display: "inline-block", background: accent, color: "#fff", padding: "13px 32px", borderRadius: "2px", textDecoration: "none", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "sans-serif", fontWeight: "700" }}>{month.cta}</a>
+              <div style={{ padding: "28px 32px 8px", textAlign: "center" }}>
+                <div style={{ fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", color: accent, fontFamily: "sans-serif", marginBottom: "10px" }}>37 Old Courthouse Square · Downtown Santa Rosa</div>
+                <div style={{ color: "#555", lineHeight: 1.7, fontSize: "15px", margin: "0 0 18px", textAlign: "left" }}>
+                  <E fieldKey="introCopy" multiline style={{ fontSize: "15px", color: "#555", lineHeight: 1.7 }} />
+                </div>
+                <div style={{ display: "inline-block", background: accent, color: "#fff", padding: "12px 28px", borderRadius: "2px", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "sans-serif", fontWeight: "700" }}>
+                  <E fieldKey="cta" style={{ color: "#fff", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", fontWeight: "700" }} />
+                </div>
               </div>
 
-              <div style={{ margin: "28px 32px 0", borderTop: "1px solid #E8E0D6" }} />
+              <div style={{ margin: "24px 32px 0", borderTop: "1px solid #E8E0D6" }} />
 
               {/* Things To Do */}
-              <div style={{ padding: "28px 32px 8px" }}>
-                <div style={{ textAlign: "center", marginBottom: "24px" }}>
+              <div style={{ padding: "24px 32px 8px" }}>
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
                   <div style={{ fontSize: "10px", letterSpacing: "3px", textTransform: "uppercase", color: "#9B8A6E", fontFamily: "sans-serif", marginBottom: "6px" }}>Things To Do</div>
-                  <div style={{ fontSize: "22px", fontWeight: "400", color: "#1A1A1A" }}>Explore Sonoma in {month.name}</div>
+                  <div style={{ fontSize: "21px", fontWeight: "400", color: "#1A1A1A" }}>Explore Sonoma in {month.name}</div>
                 </div>
                 {month.thingsToDo.map((item, i) => (
-                  <div key={i} style={{ display: "flex", gap: "14px", marginBottom: "14px", padding: "14px", background: accentLight, borderRadius: "6px", borderLeft: `3px solid ${accent}` }}>
-                    <span style={{ fontSize: "22px", flexShrink: 0 }}>{item.icon}</span>
-                    <div>
-                      <div style={{ fontSize: "14px", fontWeight: "600", color: "#1A1A1A", marginBottom: "3px" }}>{item.title}</div>
-                      <div style={{ fontSize: "13px", color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
+                  <div key={i} style={{ display: "flex", gap: "12px", marginBottom: "12px", padding: "14px", background: accentLight, borderRadius: "6px", borderLeft: `3px solid ${accent}` }}>
+                    <span style={{ fontSize: "20px", flexShrink: 0 }}>{item.icon}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: "14px", fontWeight: "600", color: "#1A1A1A", marginBottom: "3px" }}>
+                        <EN section="thingsToDo" i={i} fieldKey="title" style={{ fontSize: "14px", fontWeight: "600", color: "#1A1A1A" }} />
+                      </div>
+                      <div style={{ fontSize: "13px", color: "#666", lineHeight: 1.6 }}>
+                        <EN section="thingsToDo" i={i} fieldKey="desc" multiline style={{ fontSize: "13px", color: "#666" }} />
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ margin: "16px 32px 0", borderTop: "1px solid #E8E0D6" }} />
+              <div style={{ margin: "12px 32px 0", borderTop: "1px solid #E8E0D6" }} />
 
               {/* Events */}
-              <div style={{ padding: "28px 32px 8px" }}>
-                <div style={{ textAlign: "center", marginBottom: "24px" }}>
+              <div style={{ padding: "24px 32px 8px" }}>
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
                   <div style={{ fontSize: "10px", letterSpacing: "3px", textTransform: "uppercase", color: "#9B8A6E", fontFamily: "sans-serif", marginBottom: "6px" }}>Area Events</div>
-                  <div style={{ fontSize: "22px", fontWeight: "400", color: "#1A1A1A" }}>Don't Miss in {month.name}</div>
+                  <div style={{ fontSize: "21px", fontWeight: "400", color: "#1A1A1A" }}>Don't Miss in {month.name}</div>
                 </div>
                 {month.events.map((event, i) => (
-                  <div key={i} style={{ marginBottom: "12px", padding: "16px", background: "#FAFAF8", border: "1px solid #E8E0D6", borderRadius: "6px", display: "flex", gap: "14px", alignItems: "flex-start" }}>
-                    <div style={{ background: accent, color: "#fff", width: "34px", height: "34px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>
-                      {["🗓️", "🎉", "🎵", "🌟"][i % 4]}
+                  <div key={i} style={{ marginBottom: "10px", padding: "14px", background: "#FAFAF8", border: "1px solid #E8E0D6", borderRadius: "6px", display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                    <div style={{ background: accent, color: "#fff", width: "32px", height: "32px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", flexShrink: 0 }}>
+                      {["🗓️","🎉","🎵","🌟"][i % 4]}
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "4px", marginBottom: "4px" }}>
-                        <span style={{ fontSize: "14px", fontWeight: "600", color: "#1A1A1A" }}>{event.name}</span>
-                        <span style={{ fontSize: "11px", color: accent, background: accentLight, padding: "2px 10px", borderRadius: "12px", fontFamily: "sans-serif", fontWeight: "600", whiteSpace: "nowrap" }}>{event.date}</span>
+                        <span style={{ fontSize: "14px", fontWeight: "600", color: "#1A1A1A" }}>
+                          <EN section="events" i={i} fieldKey="name" style={{ fontSize: "14px", fontWeight: "600", color: "#1A1A1A" }} />
+                        </span>
+                        <span style={{ fontSize: "11px", color: accent, background: accentLight, padding: "2px 10px", borderRadius: "12px", fontFamily: "sans-serif", fontWeight: "600" }}>
+                          <EN section="events" i={i} fieldKey="date" style={{ fontSize: "11px", color: accent }} />
+                        </span>
                       </div>
-                      <p style={{ margin: 0, fontSize: "13px", color: "#666", lineHeight: 1.6 }}>{event.detail}</p>
+                      <div style={{ fontSize: "13px", color: "#666", lineHeight: 1.6 }}>
+                        <EN section="events" i={i} fieldKey="detail" multiline style={{ fontSize: "13px", color: "#666" }} />
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Amenities */}
-              <div style={{ margin: "16px 32px 20px", background: "#FAFAF8", border: "1px solid #E8E0D6", borderRadius: "6px", padding: "18px", display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "space-around", fontFamily: "sans-serif" }}>
-                {[{ icon: "☕", label: "Free Breakfast", sub: "6:30–10AM" }, { icon: "🍷", label: "Wine Bar", sub: "Happy Hour 5–7" }, { icon: "🚗", label: "Valet Parking", sub: "$25/night" }, { icon: "🐾", label: "Pet Friendly", sub: "Dogs welcome" }].map((a, i) => (
-                  <div key={i} style={{ textAlign: "center", minWidth: "70px" }}>
-                    <div style={{ fontSize: "20px", marginBottom: "3px" }}>{a.icon}</div>
+              <div style={{ margin: "12px 32px 18px", background: "#FAFAF8", border: "1px solid #E8E0D6", borderRadius: "6px", padding: "16px", display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "space-around", fontFamily: "sans-serif" }}>
+                {[{icon:"☕",label:"Free Breakfast",sub:"6:30–10AM"},{icon:"🍷",label:"Wine Bar",sub:"Happy Hour 5–7"},{icon:"🚗",label:"Valet Parking",sub:"$25/night"},{icon:"🐾",label:"Pet Friendly",sub:"Dogs welcome"}].map((a,i)=>(
+                  <div key={i} style={{ textAlign: "center", minWidth: "65px" }}>
+                    <div style={{ fontSize: "19px", marginBottom: "2px" }}>{a.icon}</div>
                     <div style={{ fontSize: "11px", fontWeight: "600", color: "#1A1A1A" }}>{a.label}</div>
                     <div style={{ fontSize: "10px", color: "#999" }}>{a.sub}</div>
                   </div>
                 ))}
               </div>
 
-              {/* Final CTA */}
-              <div style={{ background: accent, padding: "36px 32px", textAlign: "center" }}>
+              {/* Final CTA block */}
+              <div style={{ background: accent, padding: "32px", textAlign: "center" }}>
                 <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: "10px" }}>{month.name} 2026</div>
-                <div style={{ color: "#fff", fontSize: "26px", fontWeight: "400", marginBottom: "10px" }}>Your Sonoma Adventure Awaits</div>
-                <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "14px", margin: "0 0 22px", lineHeight: 1.6 }}>Book direct for our best rates. Stash Rewards members save even more.</p>
-                <a href="https://hotelesantarosa.com/rooms/" style={{ display: "inline-block", background: "#fff", color: accent, padding: "13px 36px", borderRadius: "2px", textDecoration: "none", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "sans-serif", fontWeight: "700" }}>{month.cta}</a>
+                <div style={{ color: "#fff", fontSize: "24px", fontWeight: "400", marginBottom: "10px" }}>Your Sonoma Adventure Awaits</div>
+                <div style={{ color: "rgba(255,255,255,0.85)", fontSize: "14px", margin: "0 0 20px", lineHeight: 1.6 }}>
+                  <E fieldKey="ctaTagline" multiline style={{ fontSize: "14px" }} />
+                </div>
+                <div style={{ display: "inline-block", background: "#fff", color: accent, padding: "12px 32px", borderRadius: "2px", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "sans-serif", fontWeight: "700" }}>
+                  <E fieldKey="cta" style={{ color: accent, fontSize: "12px" }} />
+                </div>
               </div>
 
               {/* Footer */}
-              <div style={{ background: "#1A1A1A", padding: "22px 32px", textAlign: "center", fontFamily: "sans-serif" }}>
+              <div style={{ background: "#1A1A1A", padding: "20px 32px", textAlign: "center", fontFamily: "sans-serif" }}>
                 <div style={{ color: "#9B8A6E", fontSize: "13px", letterSpacing: "1px", marginBottom: "8px" }}>Hotel E Santa Rosa</div>
                 <div style={{ color: "#666", fontSize: "12px", lineHeight: 1.8 }}>
                   37 Old Courthouse Square · Santa Rosa, CA 95404<br />
                   (707) 481-3750 · reservations@hotelesantarosa.com
                 </div>
-                <div style={{ marginTop: "14px", color: "#555", fontSize: "11px" }}>
+                <div style={{ marginTop: "12px", color: "#555", fontSize: "11px" }}>
                   <a href="#" style={{ color: "#9B8A6E" }}>Unsubscribe</a> · <a href="https://hotelesantarosa.com" style={{ color: "#9B8A6E" }}>Visit Website</a>
                 </div>
               </div>
